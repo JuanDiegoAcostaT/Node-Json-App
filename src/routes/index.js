@@ -1,9 +1,10 @@
 const { Router } = require('express');
 const router = Router();
 const fs = require('fs');
+const uuid =  require('uuid/v4');
 
 const json_books = fs.readFileSync('src/books.json', 'utf-8');
-const books = JSON.parse(json_books);
+var books = JSON.parse(json_books);
 
 router.get('/', (req, res, next) => {
     res.render('index.ejs', {
@@ -27,6 +28,7 @@ router.post('/new-entry', (req, res, next) => {
     }
 
     let newBook = {
+        id : uuid(),
         title : title,
         author : author,
         image : image, 
@@ -40,6 +42,17 @@ router.post('/new-entry', (req, res, next) => {
 
     // res.send('received')
     res.redirect('/');
+})
+
+
+router.get('/delete/:id', (req, res, next) => {
+    books = books.filter(book => book.id != req.params.id);
+
+    const json_books = JSON.stringify(books)
+    fs.writeFileSync('src/books.json', json_books, 'utf-8')
+
+    res.redirect('/');
+s
 })
 
 module.exports = router;
