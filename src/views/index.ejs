@@ -7,14 +7,15 @@
 <body>
     <div class="container p-4">
         <div class="row">
-            <% Books.forEach(function (Book) { %>
+            <% books.forEach(function (book) { %>
                 <div class="col-md-4">
                     <div class="card ">
                         <div class="card-header">
-                            <%= Book.title %> / <%= Book.author %>
+                            <%= book.title %> / <%= book.author %>
                         </div>
+                      <img src="<%= book.image %>" class="card-img-top" alt="image">
                         <div class="card-body">
-                            <p><%= Book.description %></p>
+                            <p><%= book.description %></p>
                         </div>
                         <div class="card-footer">
                             <button class="btn-danger">
@@ -22,9 +23,9 @@
                             </button>
                         </div>
                     </div>
+
                 </div>
            <% }) %> 
-
         </div>
     </div>
 </body>
