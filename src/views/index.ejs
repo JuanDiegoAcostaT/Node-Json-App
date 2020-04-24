@@ -5,13 +5,26 @@
     <title>Node Json App</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container p-4">
         <div class="row">
-            <div class="card">
-                <div class="card-body">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam, vel.
+            <% Books.forEach(function (Book) { %>
+                <div class="col-md-4">
+                    <div class="card ">
+                        <div class="card-header">
+                            <%= Book.title %> / <%= Book.author %>
+                        </div>
+                        <div class="card-body">
+                            <p><%= Book.description %></p>
+                        </div>
+                        <div class="card-footer">
+                            <button class="btn-danger">
+                                Delete
+                            </button>
+                        </div>
+                    </div>
                 </div>
-            </div>
+           <% }) %> 
+
         </div>
     </div>
 </body>

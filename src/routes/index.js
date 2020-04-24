@@ -5,7 +5,9 @@ const router = Router();
 const Books = [];
 
 router.get('/', (req, res, next) => {
-    res.render('index.ejs')
+    res.render('index.ejs', {
+        Books : Books
+    })
 })
 
 
@@ -14,23 +16,23 @@ router.get('/new-entry', (req, res , next) => {
 })
 
 
-router.post('/new-entry', (re, res, next) => {
+router.post('/new-entry', (req, res, next) => {
 
-    const { title, author, image, decription } = req.body
+    const { title, author, image, description } = req.body
 
     if(!title || !author || !image || !description) {
         res.status(400).send('Please write all the inputa before submit');
         return;
     }
 
-    let newBok = {
+    let newBook = {
         title : title,
         author : author,
-        imagw : image, 
-        decrition : description
+        image : image, 
+        description : description
     }
 
-    Books.push(req.body);
+    Books.push(newBook);
     res.send('received')
 })
 
